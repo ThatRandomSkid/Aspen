@@ -24,30 +24,36 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C19A55612DA20A0B00EFEF6D /* Aspen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aspen.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C19A55722DA20A0E00EFEF6D /* AspenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AspenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C19A557C2DA20A0E00EFEF6D /* AspenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AspenUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1F625E42DA20AC80091DEA3 /* Aspen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = Aspen.app; path = "/Users/lindenmorgan/Documents/Aspen/Swift/Aspen/build/Debug-iphoneos/Aspen.app"; sourceTree = "<absolute>"; };
+		C1F625E52DA20AC80091DEA3 /* AspenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AspenTests.xctest; path = "/Users/lindenmorgan/Documents/Aspen/Swift/Aspen/build/Debug-iphoneos/Aspen.app/PlugIns/AspenTests.xctest"; sourceTree = "<absolute>"; };
+		C1F625E62DA20AC80091DEA3 /* AspenUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = AspenUITests.xctest; path = "/Users/lindenmorgan/Documents/Aspen/Swift/Aspen/build/Debug-iphoneos/AspenUITests-Runner.app/PlugIns/AspenUITests.xctest"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C19A55842DA20A0E00EFEF6D /* Exceptions for "Aspen" folder in "Aspen" target */ = {
+		C19A55AE2DA20A7600EFEF6D /* Exceptions for "Aspen" folder in "Aspen" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
+				AspenApp.swift,
+				Assets.xcassets,
+				ContentView.swift,
+				Item.swift,
 			);
 			target = C19A55602DA20A0B00EFEF6D /* Aspen */;
+		};
+		C19A55AF2DA20A7600EFEF6D /* Exceptions for "Aspen" folder in "AspenTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				AspenApp.swift,
+				Assets.xcassets,
+				ContentView.swift,
+				Info.plist,
+				Item.swift,
+			);
+			target = C19A55712DA20A0E00EFEF6D /* AspenTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C19A55632DA20A0B00EFEF6D /* Aspen */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				C19A55842DA20A0E00EFEF6D /* Exceptions for "Aspen" folder in "Aspen" target */,
-			);
-			path = Aspen;
-			sourceTree = "<group>";
-		};
 		C19A55752DA20A0E00EFEF6D /* AspenTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AspenTests;
@@ -56,6 +62,15 @@
 		C19A557F2DA20A0E00EFEF6D /* AspenUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AspenUITests;
+			sourceTree = "<group>";
+		};
+		C19A55A92DA20A7600EFEF6D /* Aspen */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C19A55AE2DA20A7600EFEF6D /* Exceptions for "Aspen" folder in "Aspen" target */,
+				C19A55AF2DA20A7600EFEF6D /* Exceptions for "Aspen" folder in "AspenTests" target */,
+			);
+			path = Aspen;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -88,21 +103,10 @@
 		C19A55582DA20A0B00EFEF6D = {
 			isa = PBXGroup;
 			children = (
-				C19A55632DA20A0B00EFEF6D /* Aspen */,
+				C19A55A92DA20A7600EFEF6D /* Aspen */,
 				C19A55752DA20A0E00EFEF6D /* AspenTests */,
 				C19A557F2DA20A0E00EFEF6D /* AspenUITests */,
-				C19A55622DA20A0B00EFEF6D /* Products */,
 			);
-			sourceTree = "<group>";
-		};
-		C19A55622DA20A0B00EFEF6D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C19A55612DA20A0B00EFEF6D /* Aspen.app */,
-				C19A55722DA20A0E00EFEF6D /* AspenTests.xctest */,
-				C19A557C2DA20A0E00EFEF6D /* AspenUITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,14 +124,11 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				C19A55632DA20A0B00EFEF6D /* Aspen */,
-			);
 			name = Aspen;
 			packageProductDependencies = (
 			);
 			productName = Aspen;
-			productReference = C19A55612DA20A0B00EFEF6D /* Aspen.app */;
+			productReference = C1F625E42DA20AC80091DEA3 /* Aspen.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C19A55712DA20A0E00EFEF6D /* AspenTests */ = {
@@ -145,12 +146,13 @@
 			);
 			fileSystemSynchronizedGroups = (
 				C19A55752DA20A0E00EFEF6D /* AspenTests */,
+				C19A55A92DA20A7600EFEF6D /* Aspen */,
 			);
 			name = AspenTests;
 			packageProductDependencies = (
 			);
 			productName = AspenTests;
-			productReference = C19A55722DA20A0E00EFEF6D /* AspenTests.xctest */;
+			productReference = C1F625E52DA20AC80091DEA3 /* AspenTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		C19A557B2DA20A0E00EFEF6D /* AspenUITests */ = {
@@ -173,7 +175,7 @@
 			packageProductDependencies = (
 			);
 			productName = AspenUITests;
-			productReference = C19A557C2DA20A0E00EFEF6D /* AspenUITests.xctest */;
+			productReference = C1F625E62DA20AC80091DEA3 /* AspenUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -209,7 +211,7 @@
 			mainGroup = C19A55582DA20A0B00EFEF6D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = C19A55622DA20A0B00EFEF6D /* Products */;
+			productRefGroup = C19A55582DA20A0B00EFEF6D;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
