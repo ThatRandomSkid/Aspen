@@ -6,7 +6,13 @@ __pycache__/
 # C extensions
 *.so
 
+
+.env
+.DS_Store
+
+
 # Distribution / packaging
+
 .Python
 build/
 develop-eggs/
