@@ -35,15 +35,13 @@ def get_location(**kwargs):
     data = response.json()
     position_data = data[0]
 
-
-    
     lat = position_data.get('latitude')
     lon = position_data.get('longitude')
     alt = position_data.get('altitude')
-    add = (requests.get("https://nominatim.openstreetmap.org/reverse", {"format": "json", "lat": lat, "lon": lon, "email": traccar_username})).json()
+    add = (requests.get("https://nominatim.openstreetmap.org/reverse", {"format": "json", "lat": lat, "lon": lon, "email": traccar_username})).json()['display_name']
     time = position_data.get('deviceTime')
 
-    location = f"Address: {add} \nLatitude: {lat}\nLongitude: {lon}\nAltitude: {alt}\nTime when logged: {time}"
+    location = f"Address: {add} Latitude: {lat} Longitude: {lon} Altitude: {alt} Time when logged: {time}"
     
     return(location)
 
@@ -66,7 +64,7 @@ tools=[
                         You can filter for certain times if needed: put the date the user entered in \
                         'from' and adding to the next of the lowest unit of time they specified for 'to'. So for 'Where was I on June 10th' \
                         you would filter 'from' June 10th 'to' June 11th, in correct time formatting, ISO 8601. Assume other info is current day/month/year \
-                        unless otherwise specifeid. Times will be in EST, but responses are in UTC, so convert. If different locations are recived, list the top ones \
+                        unless otherwise specifeid. TIMES WILL BE GIVEN IN EST, BUT SERVER IS IN UTC, SO CONVERT. If different locations are recived, list the top ones \
                         and say there are others unless told otherwsie.'",
         "parameters": {
             "type": "object",
@@ -86,23 +84,33 @@ tools=[
     }   
 ]
 
+input_messages = [{"role": "system", "content": f"You are Aspen, a helpful personal assistant for Linden Morgan. You can draw on differant data sources to accomplish this goal. Don't use markdown symbols. The current date/time is {datetime.now()}"}]
+
+
 # ChatGPT interaction
 while True:
-    user_input = input("User: ")
 
-    input_messages = [{"role": "system", "content": f"You are Aspen, a helpful personal assistant for Linden Morgan. \
-                       You can draw on differant data sources to accomplish this goal. The current date/time is {datetime.now()}\
-                       Don't use markdown symbols."}, {"role": "user", "content": user_input}]
+
+    # Forward user input
+    user_input = input("User: ")
+    input_messages.append({"role": "user", "content": user_input})
+
 
     response = client.responses.create(
         model="gpt-4o-mini",
         tools=tools,
         input=input_messages
     )
+    
+    output_str = response.output_text
+
+    #print(input_messages)
 
     # Get tools if needed, otherwise return response
-    if type(response) is str:
-        print(response)
+    if str(output_str):
+        input_messages.append({"role": "assistant", "content": output_str})
+        print(output_str)
+
     else:
         input_messages.append(response.output[0])
         for tool_call in response.output:
@@ -111,18 +119,30 @@ while True:
 
             name = tool_call.name
 
-            #print(tool_call)
-
             kwargs = json.loads(tool_call.arguments)
             
+            # Call tools
             try:
                 result = call_tools(name, kwargs)
+            
+            # Error handeling for tool calls
             except IndexError:
-                print("No location data in range.")
-                result = None
+                if tool_call.name == "get_location":
+                    print("No location data in range.")
+                    result = "No location data in range."
+                else: 
+                    print("Unkown error with tool calling.")
+                    result = "Unkown error with tool calling."
+                print(kwargs)
             except:
-                print("Unkown error with location parsing.")
-                result = None
+                if name == "get_location":
+                    print("Unkown error accessing location data occuerd.")
+                    result = "Unkown error accessing location data occuerd."
+                else:
+                    print("Unkown error with tool calling.")
+                    result = "Unkown error with tool calling."
+
+
 
             input_messages.append({
                 "type": "function_call_output",
@@ -135,4 +155,5 @@ while True:
             tools=tools,
             input=input_messages
         )
+        input_messages.append({"role": "assistant", "content": response_2.output_text})
         print(response_2.output_text)
