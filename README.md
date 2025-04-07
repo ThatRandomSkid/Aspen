@@ -1,7 +1,6 @@
 # Aspen
 
 ## About
-
 An in progress personal assistant AI, designed to leverage diverse sources of information and tools to manage, assist with, and recall information about ones life. 
 
 Based on OpenAI's Responses API with GPT-4o, with personal data and tool intergrations. 
@@ -9,7 +8,6 @@ Frontend is planned via an iOS app in Swift. Built primairly in Python.
 
 
 ## Feature checklist:
-
 Basic: 
 - [x] Core LLM functionality
 - [ ] Conversation memory
@@ -19,9 +17,9 @@ Basic:
 Tools:
 - [x] Web search
 - [ ] Location search
-      - [x] Last known location
-      - [x] Location from time
-      - [ ] Time from location
+     - [x] Last known location
+     - [x] Location from time
+     - [ ] Time from location
 - [ ] Calandar intergation
 - [ ] Contacts intergration
 - [ ] Messages intergration
